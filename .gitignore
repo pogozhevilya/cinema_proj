@@ -1,0 +1,13 @@
+# Intellij IDEA
+.idea
+cinema_proj.iml
+
+# VSCode
+.vscode/
+
+# Maven
+target/
+
+/shelf/
+/workspace.xml
+
