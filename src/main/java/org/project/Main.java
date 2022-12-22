@@ -22,6 +22,9 @@ public class Main {
         }
         objectMapper.writeValue(new File(filePath), shows);
 
+        disp();
+    }
+    private static void disp() {
         try (Scanner in = new Scanner(System.in)) {
             System.out.print("Функциональщина:\n1- Найти название фильма по id,  2- показ по названию, 3 - показ по id, 4- Вывести все фильмы в прокате\n");
             int choice = in.nextInt();
