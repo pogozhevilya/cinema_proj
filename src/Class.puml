@@ -1,0 +1,44 @@
+@startuml
+class Storage {
+    - static Storage ourInstance
+    - final Movie[] movies
+    - final Show[] shows
+    + synchronized static Storage getInstance()
+    + synchronized Movie findMovieById(int id)
+    + synchronized Movie findMovieByTitle(String title)
+    + synchronized Movie[] findAllMovies()
+    + synchronized Show findShowById(int id)
+    + synchronized Show findShowByMovie(Movie movie)
+    + synchronized Show[] findAllShows()
+}
+class Movie {
+    + Movie(int id, String title)
+    - int id
+    - String title
+    + int getId()
+    + void setId(int id)
+    + String getTitle()
+    + void setTitle(String title)
+    + String toString()
+}
+class Show {
+    + Show(int id, Movie movie, String showtime, int availableSeats)
+    - int id
+    - Movie movie
+    - String showtime
+    - int availableSeats
+    + int getId()
+    + void setId(int id)
+    + Movie getMovie()
+    + void setMovie(Movie movie)
+    + String getShowtime()
+    + void setShowtime(String showtime)
+    + int getAvailableSeats()
+    + void setAvailableSeats(int availableSeats)
+    + String toString()
+}
+
+Show ||--|| Movie
+Storage *-- Movie
+Storage *-- Show
+@enduml

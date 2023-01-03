@@ -11,12 +11,12 @@ import java.io.IOException;
 
 
 public class Main {
-    static Storage storage = Storage.getInstance () ;
+    static Storage storage = Storage.getInstance();
 
-    public static void main ( String [] args ) throws IOException {
+    public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String filePath = "./dbJson.json";
-        Show[] shows = storage.findAllShows () ;
+        Show[] shows = storage.findAllShows();
         for (Show show : shows) {
             System.out.println(show);
         }
@@ -24,11 +24,12 @@ public class Main {
 
         disp();
     }
+
     private static void disp() {
         try (Scanner in = new Scanner(System.in)) {
             System.out.print("Функциональщина:\n1- Найти название фильма по id,  2- показ по названию, 3 - показ по id, 4- Вывести все фильмы в прокате\n");
             int choice = in.nextInt();
-
+            in.nextLine();
             switch (choice) {
                 case 1 -> {
                     System.out.println("Введите id фильма ");
@@ -39,7 +40,6 @@ public class Main {
                     System.out.println("Введите название фильма ");
                     String title_film = in.nextLine();
                     System.out.println(Storage.getInstance().findMovieByTitle(title_film));
-
                 }
                 case 3 -> {
                     System.out.println("Введите id фильма ");
