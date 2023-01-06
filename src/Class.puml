@@ -1,4 +1,8 @@
 @startuml
+abstract class AbstractEntity {
+    - int id
+}
+
 class Storage {
     - static Storage ourInstance
     - final Movie[] movies
@@ -41,4 +45,6 @@ class Show {
 Show ||--|| Movie
 Storage *-- Movie
 Storage *-- Show
+AbstractEntity <|-- Show
+AbstractEntity <|-- Movie
 @enduml

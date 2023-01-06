@@ -1,7 +1,6 @@
 package org.project.entity;
 
-public class Movie {
-    private int id;
+public class Movie extends AbstractEntity {
     private String title;
 
     public Movie(int id, String title) {

@@ -1,0 +1,63 @@
+@startuml
+
+abstract class Document {
+    - String name
+    - Integer pages
+    - Date date
+    # Document()
+    # Document(String name, Integer pages)
+    + String getName()
+    + Integer getPages()
+    + void setName()
+    + void attachPages(Integer count)
+    + abstract String read()
+    + abstract void write() throws NotWriteableException()
+    + abstract Boolean isReadable()
+    + abstract Boolean isWriteable()
+    + String toString()
+    + int hashCode()
+    + Boolean equals()
+}
+class Waybill{
+    - Integer amount
+    - String products
+    # Waybill()
+    # Waybill(Integer amount, String products)
+    + String getProducts()
+    + Integer getAmount()
+    + String toString()
+    + void setProducts()
+    + int hashCode()
+    + Boolean equals()
+    + WaybillBuilder builder()
+}
+class Receipt {
+    - String name
+    - Date date
+    # Receipt()
+    # Receipt(String name, Date date)
+    + String getName()
+    + Date getDate()
+    + String toString()
+    + void setName()
+    + int hashCode()
+    + Boolean equals()
+    + ReceiptBuilder builder()
+}
+class Invoice {
+    - Integer id
+    - Integer sum
+    # Invoice()
+    # Invoice(Integer id, Integer sum)
+    + Integer getId()
+    + Integer getSum()
+    + void setId()
+    + int hashCode()
+    + Boolean equals()
+    + InvoiceBuilder builder()
+}
+
+Invoice --|> Receipt
+Receipt --|> Document
+Waybill --|> Document
+@enduml

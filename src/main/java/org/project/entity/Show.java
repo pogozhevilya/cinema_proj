@@ -1,11 +1,9 @@
 package org.project.entity;
 
-public class Show {
-    private int id;
+public class Show extends AbstractEntity {
     private Movie movie;
     private String showtime;
     private int availableSeats;
-
     public Show(int id, Movie movie, String showtime, int availableSeats) {
         this.id = id;
         this.movie = movie;
