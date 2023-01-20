@@ -1,6 +1,7 @@
 @startuml
-abstract class AbstractEntity{
-- String name
+
+interface Identifiable {
+    + Integer getId()
 }
 abstract class Document {
     - String name
@@ -62,6 +63,5 @@ class Invoice {
 Invoice --|> Receipt
 Receipt--|> Document
 Waybill --|> Document
-AbstractEntity *-- Document
-AbstractEntity *-- Receipt
+Identifiable *-- Invoice
 @enduml
