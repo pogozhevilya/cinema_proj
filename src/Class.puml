@@ -76,6 +76,6 @@ Main*--MovieRepository
 Main*--ShowRepository
 
 Show ||--|| Movie
-AbstractEntity <|-- Show
+AbstractEntity<|-- Show
 AbstractEntity <|-- Movie
 @enduml

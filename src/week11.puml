@@ -60,7 +60,7 @@ class Invoice {
 }
 
 Invoice --|> Receipt
-Receipt --|> Document
+Receipt--|> Document
 Waybill --|> Document
 AbstractEntity *-- Document
 AbstractEntity *-- Receipt
