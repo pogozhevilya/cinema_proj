@@ -1,37 +1,24 @@
 @startuml
-abstract class AbstractEntity {
-    - int id
+abstract class AbstractEntity<E extends Serializable>{
 }
 
-class Storage {
-    - static Storage ourInstance
-    - final Movie[] movies
-    - final Show[] shows
-    + synchronized static Storage getInstance()
-    + synchronized Movie findMovieById(int id)
-    + synchronized Movie findMovieByTitle(String title)
-    + synchronized Movie[] findAllMovies()
-    + synchronized Show findShowById(int id)
-    + synchronized Show findShowByMovie(Movie movie)
-    + synchronized Show[] findAllShows()
-}
 class Movie {
-    + Movie(int id, String title)
-    - int id
+    + Movie(Integer id, String title)
+    - Integer id
     - String title
-    + int getId()
+    + Integer getId()
     + void setId(int id)
     + String getTitle()
     + void setTitle(String title)
     + String toString()
 }
 class Show {
-    + Show(int id, Movie movie, String showtime, int availableSeats)
-    - int id
+    + Show(Integer id, Movie movie, String showtime, int availableSeats)
+    - Integer id
     - Movie movie
     - String showtime
     - int availableSeats
-    + int getId()
+    + Integer getId()
     + void setId(int id)
     + Movie getMovie()
     + void setMovie(Movie movie)
@@ -42,9 +29,53 @@ class Show {
     + String toString()
 }
 
+interface Identifiable<E extends Serializable>{
+    + E getId();
+}
+interface MovieRepository {
+    + Movie findMovieById(int id);
+
+    + Movie findMovieByTitle(String title);
+
+    + List<Movie> findAllMovies();
+}
+interface ShowRepository {
+    + Show findShowById(int id);
+
+    + Show findShowByMovie(Movie movie);
+
+    + List<Show> findAllShows();
+}
+class MovieRepositoryImp{
+    - static instance
+    - static final List<Movie> STATE
+    + static synchronized MovieRepository getInstance()
+    + synchronized Movie findMovieById(int id)
+    + synchronized Movie findMovieByTitle(String title)
+    + synchronized List<Movie> findAllMovies()
+}
+class ShowRepositoryImp{
+    - static instance
+    - static final List<Show> STATE
+    + static synchronized MovieRepository getInstance()
+    + synchronized Show findShowByMovie(Movie movie)
+    + synchronized List<Show> findAllShows()
+}
+class Main{
+    - static final MovieRepository MOVIE_REPOSITORY
+    - static final ShowRepository SHOW_REPOSITORY
+    + static main(String... args[])
+    - void disp()
+}
+
+Identifiable<|--AbstractEntity
+MovieRepository<|--MovieRepositoryImp
+ShowRepository<|--ShowRepositoryImp
+
+Main*--MovieRepository
+Main*--ShowRepository
+
 Show ||--|| Movie
-Storage *-- Movie
-Storage *-- Show
 AbstractEntity <|-- Show
 AbstractEntity <|-- Movie
 @enduml
