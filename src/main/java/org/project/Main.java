@@ -2,25 +2,26 @@ package org.project;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.project.entity.Show;
-import org.project.entity.Storage;
+import org.project.repository.MovieRepository;
+import org.project.repository.ShowRepository;
+import org.project.repository.impl.MovieRepositoryImpl;
+import org.project.repository.impl.ShowRepositoryImpl;
 
-import java.util.Arrays;
-import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    static Storage storage = Storage.getInstance();
+    private static final MovieRepository MOVIE_REPOSITORY = MovieRepositoryImpl.getInstance();
+    private static final ShowRepository SHOW_REPOSITORY = ShowRepositoryImpl.getInstance();
 
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String filePath = "./dbJson.json";
-        Show[] shows = storage.findAllShows();
-        for (Show show : shows) {
-            System.out.println(show);
-        }
+        List<Show> shows = SHOW_REPOSITORY.findAllShows();
+        shows.forEach(System.out::println);
         objectMapper.writeValue(new File(filePath), shows);
-
         disp();
     }
 
@@ -32,20 +33,20 @@ public class Main {
             switch (choice) {
                 case 1 -> {
                     System.out.println("Введите id фильма ");
-                    int id_film = in.nextInt();
-                    System.out.println(Storage.getInstance().findMovieById(id_film));
+                    int idFilm = in.nextInt();
+                    System.out.println(MOVIE_REPOSITORY.findMovieById(idFilm));
                 }
                 case 2 -> {
                     System.out.println("Введите название фильма ");
-                    String title_film = in.nextLine();
-                    System.out.println(Storage.getInstance().findMovieByTitle(title_film));
+                    String titleFilm = in.nextLine();
+                    System.out.println(MOVIE_REPOSITORY.findMovieByTitle(titleFilm));
                 }
                 case 3 -> {
                     System.out.println("Введите id фильма ");
-                    int id_show = in.nextInt();
-                    System.out.println(Storage.getInstance().findShowById(id_show));
+                    int idShow = in.nextInt();
+                    System.out.println(SHOW_REPOSITORY.findShowById(idShow));
                 }
-                case 4 -> System.out.println(Arrays.toString(Storage.getInstance().findAllMovies()));
+                case 4 -> System.out.println(MOVIE_REPOSITORY.findAllMovies());
             }
         }
     }

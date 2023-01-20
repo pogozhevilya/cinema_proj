@@ -1,21 +1,24 @@
 package org.project.entity;
 
-public class Show extends AbstractEntity {
+public class Show extends AbstractEntity<Integer> {
+    private Integer id;
     private Movie movie;
     private String showtime;
     private int availableSeats;
-    public Show(int id, Movie movie, String showtime, int availableSeats) {
+
+    public Show(Integer id, Movie movie, String showtime, int availableSeats) {
         this.id = id;
         this.movie = movie;
         this.showtime = showtime;
         this.availableSeats = availableSeats;
     }
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

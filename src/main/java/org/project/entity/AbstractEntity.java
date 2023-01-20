@@ -1,5 +1,6 @@
 package org.project.entity;
 
-abstract class AbstractEntity {
-    public int id;
+import java.io.Serializable;
+
+abstract class AbstractEntity<E extends Serializable> implements Identifiable<E> {
 }

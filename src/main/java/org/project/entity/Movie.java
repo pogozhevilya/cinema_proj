@@ -1,18 +1,20 @@
 package org.project.entity;
 
-public class Movie extends AbstractEntity {
+public class Movie extends AbstractEntity<Integer> {
+    private Integer id;
     private String title;
 
-    public Movie(int id, String title) {
+    public Movie(Integer id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,7 +26,11 @@ public class Movie extends AbstractEntity {
         this.title = title;
     }
 
+    @Override
     public String toString() {
-        return "[" + id + "] " + title;
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
     }
 }
