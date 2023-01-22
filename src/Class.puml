@@ -68,7 +68,7 @@ class Main{
     - void disp()
 }
 
-Identifiable<|--AbstractEntity
+Identifiable<|..AbstractEntity
 MovieRepository<|--MovieRepositoryImp
 ShowRepository<|--ShowRepositoryImp
 
